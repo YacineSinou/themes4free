@@ -1,19 +1,4 @@
-const GITHUB_REPO = "YacineSinou/themes4free";
-const GITHUB_BRANCH = "main";
-const GITHUB_IMAGES_FOLDER = "images";
-
-// Nouveau mapping avec des noms simples
-const GITHUB_FILENAMES = {
-    1: "photo-1.jpg",
-    2: "photo-2.jpg",
-    3: "photo-3.jpg",
-    4: "photo-4.jpg",
-    5: "photo-5.jpg",
-    6: "photo-6.jpg",
-    8: "photo-8.jpg" 
-};
 // Données des thèmes avec des images qui fonctionnent
-
 const themes = [
     {
         id: 1,
@@ -21,7 +6,7 @@ const themes = [
         description: "forêts mystérieuses et magiques.",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-1.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -30,7 +15,7 @@ const themes = [
         description: "high-tech et éléments futuristes.",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-2.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -39,7 +24,7 @@ const themes = [
         description: "formes et couleurs vibrantes.",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-3.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -48,7 +33,7 @@ const themes = [
         description: "Captez l'essence des villes la nuit.",
         category: "ville",
         imageUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-4.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -57,7 +42,7 @@ const themes = [
         description: "Thème relaxant inspiré par les plus belles plages du monde.",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-5.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -66,7 +51,7 @@ const themes = [
         description: "Pour les développeurs, un thème inspiré par le code.",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-6.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -75,14 +60,10 @@ const themes = [
         description: "Un thème abstrait inspiré par l'espace et les étoiles.",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        filename: "photo-8.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     }
 ];
-// Fonction pour générer l'URL de téléchargement GitHub
-function getGitHubDownloadUrl(filename) {
-    return `https://raw.githubusercontent.com/YacineSinou/themes4free/main/images/${filename}`;
-}
 
 // Éléments DOM
 const themesContainer = document.querySelector('.themes-container');
@@ -153,104 +134,75 @@ function addDownloadEvents() {
     const downloadButtons = document.querySelectorAll('.download-btn');
     
     downloadButtons.forEach(button => {
-        button.addEventListener('click', async (e) => {
+        button.addEventListener('click', (e) => {
             const themeId = e.target.dataset.id;
             const theme = themes.find(t => t.id == themeId);
             
-            // Utiliser GitHub pour le téléchargement
-            const downloadUrl = getGitHubDownloadUrl(theme.filename);
-            
+            // Créer un lien invisible pour le téléchargement
             const a = document.createElement('a');
-            a.href = downloadUrl;
+            a.href = theme.downloadUrl;
             a.download = `theme-${theme.title.toLowerCase().replace(/ /g, '-')}.zip`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+            
+            console.log(`Téléchargement de "${theme.title}" initié`);
         });
     });
 }
 
 // Gérer les téléchargements d'images
 function addImageDownloadEvents() {
-    document.querySelectorAll('.download-image-btn').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+    const downloadImageButtons = document.querySelectorAll('.download-image-btn');
+    
+    downloadImageButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Empêche l'ouverture du modal
+            const imageUrl = e.target.dataset.url;
             
-            const themeId = btn.closest('.theme-card').querySelector('.download-btn').dataset.id;
-            const filename = GITHUB_FILENAMES[themeId];
+            // Créer un lien invisible pour le téléchargement
+            const a = document.createElement('a');
+            a.href = imageUrl;
+            a.download = `image-${Date.now()}.jpg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
             
-            if (!filename) {
-                alert("Fichier non disponible");
-                return;
-            }
-
-            const githubUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_IMAGES_FOLDER}/${filename}`;
-            
-            try {
-                // Solution qui fonctionne à 100% pour forcer le téléchargement
-                const response = await fetch(githubUrl);
-                const blob = await response.blob();
-                const blobUrl = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = blobUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                
-                // Nettoyage
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(blobUrl);
-                }, 100);
-            } catch (error) {
-                console.error("Échec du téléchargement:", error);
-                alert("Erreur lors du téléchargement");
-            }
+            console.log(`Téléchargement de l'image initié`);
         });
     });
 }
 
 // Configurer le modal pour l'image agrandie
-downloadExpandedBtn.addEventListener('click', async function(e) {
-    e.preventDefault();
-    
-    // Trouver le thème correspondant à l'image agrandie
-    const themeCards = document.querySelectorAll('.theme-card');
-    let themeId = null;
-    
-    themeCards.forEach(card => {
-        if (card.querySelector('.theme-img').src === currentExpandedImageUrl) {
-            themeId = card.querySelector('.download-btn').dataset.id;
+function setupModal() {
+    // Lorsqu'on clique sur une image
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('theme-img')) {
+            modal.style.display = "block";
+            modalImg.src = e.target.src;
+            currentExpandedImageUrl = e.target.src;
         }
     });
 
-    if (!themeId || !GITHUB_FILENAMES[themeId]) {
-        alert("Fichier non disponible");
-        return;
-    }
-
-    const filename = GITHUB_FILENAMES[themeId];
-    const githubUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_IMAGES_FOLDER}/${filename}`;
-    
-    try {
-        const response = await fetch(githubUrl);
-        const blob = await response.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        
+    // Bouton de téléchargement dans le modal
+    downloadExpandedBtn.addEventListener('click', function() {
         const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = filename;
+        a.href = currentExpandedImageUrl;
+        a.download = `image-${Date.now()}.jpg`;
         document.body.appendChild(a);
         a.click();
-        
-        setTimeout(() => {
-            document.body.removeChild(a);
-            URL.revokeObjectURL(blobUrl);
-        }, 100);
-    } catch (error) {
-        console.error("Échec du téléchargement:", error);
-        alert("Erreur lors du téléchargement");
-    }
-});
+        document.body.removeChild(a);
+    });
+
+    // Fermer le modal
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    // Fermer quand on clique en dehors de l'image
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+}
