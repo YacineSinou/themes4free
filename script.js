@@ -1,37 +1,67 @@
-// Configuration GitHub
-const githubRepo = "votreUtilisateur/votreDepot";
-const branch = "main";
-const imagesFolder = "images";
-
-// Données des thèmes avec URLs GitHub
+// Données des thèmes avec des images qui fonctionnent
 const themes = [
     {
         id: 1,
         title: "Forêt Enchantée",
         description: "forêts mystérieuses et magiques.",
         category: "nature",
-        filename: "photo-1.jpg"
+        imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 2,
         title: "Futur Numérique",
         description: "high-tech et éléments futuristes.",
         category: "technologie",
-        filename: "photo-2.jpg"
+        imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 3,
         title: "Ondes Colorées",
         description: "formes et couleurs vibrantes.",
         category: "abstrait",
-        filename: "photo-3.jpg"
+        imageUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 4,
         title: "Nuit Urbaine",
         description: "Captez l'essence des villes la nuit.",
         category: "ville",
-        filename: "photo-4.jpg"
+        imageUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 5,
+        title: "Plage Paradisiaque",
+        description: "Thème relaxant inspiré par les plus belles plages du monde.",
+        category: "nature",
+        imageUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 6,
+        title: "Code Source",
+        description: "Pour les développeurs, un thème inspiré par le code.",
+        category: "technologie",
+        imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 8,
+        title: "Cosmos Infini",
+        description: "Un thème abstrait inspiré par l'espace et les étoiles.",
+        category: "abstrait",
+        imageUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        downloadUrl: "#",
+        imageDownloadUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     }
 ];
 
@@ -46,14 +76,9 @@ const downloadExpandedBtn = document.getElementById("downloadExpandedImage");
 // Variables pour suivre l'image actuellement agrandie
 let currentExpandedImageUrl = "";
 
-// Fonction pour générer l'URL GitHub
-function getGitHubUrl(filename) {
-    return `https://raw.githubusercontent.com/${githubRepo}/${branch}/${imagesFolder}/${filename}`;
-}
-
 // Afficher tous les thèmes au chargement
 document.addEventListener('DOMContentLoaded', () => {
-    loadImagesFromGitHub();
+    displayThemes(themes);
     setupModal();
 });
 
@@ -62,16 +87,14 @@ function displayThemes(themesToDisplay) {
     themesContainer.innerHTML = '';
     
     themesToDisplay.forEach(theme => {
-        const imageUrl = getGitHubUrl(theme.filename);
-        
         const themeElement = document.createElement('div');
         themeElement.classList.add('theme-card');
         themeElement.setAttribute('data-category', theme.category);
         
         themeElement.innerHTML = `
             <div class="theme-img-container">
-                <img src="${imageUrl}" alt="${theme.title}" class="theme-img">
-                <button class="download-image-btn" data-url="${imageUrl}">Télécharger l'image</button>
+                <img src="${theme.imageUrl}" alt="${theme.title}" class="theme-img">
+                <button class="download-image-btn" data-url="${theme.imageDownloadUrl}">Télécharger l'image</button>
             </div>
             <div class="theme-info">
                 <h3>${theme.title}</h3>
@@ -83,64 +106,15 @@ function displayThemes(themesToDisplay) {
         themesContainer.appendChild(themeElement);
     });
     
-    // Gestion des erreurs d'image
-    addImageErrorHandling();
-    // Ajouter les événements aux boutons
+    // Ajouter les événements aux boutons de téléchargement
     addDownloadEvents();
     addImageDownloadEvents();
-}
-
-// Charger les images depuis GitHub
-async function loadImagesFromGitHub() {
-    try {
-        // Vérifier la disponibilité des images
-        const availableThemes = [];
-        
-        for (const theme of themes) {
-            const imageUrl = getGitHubUrl(theme.filename);
-            const exists = await checkImageExists(imageUrl);
-            
-            if (exists) {
-                availableThemes.push({
-                    ...theme,
-                    imageUrl,
-                    downloadUrl: imageUrl,
-                    imageDownloadUrl: imageUrl
-                });
-            }
-        }
-        
-        displayThemes(availableThemes.length > 0 ? availableThemes : themes);
-    } catch (error) {
-        console.error("Erreur:", error);
-        displayThemes(themes);
-    }
-}
-
-// Vérifier si une image existe
-async function checkImageExists(url) {
-    try {
-        const response = await fetch(url, { method: 'HEAD' });
-        return response.ok;
-    } catch (error) {
-        return false;
-    }
-}
-
-// Gestion des erreurs d'image
-function addImageErrorHandling() {
-    document.querySelectorAll('.theme-img').forEach(img => {
-        img.onerror = function() {
-            this.src = 'https://via.placeholder.com/300x200?text=Image+Non+Disponible';
-            this.style.objectFit = 'contain';
-            this.style.backgroundColor = '#f0f0f0';
-        };
-    });
 }
 
 // Filtrer les thèmes par catégorie
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
+        // Mettre à jour le bouton actif
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         
@@ -155,33 +129,24 @@ filterButtons.forEach(button => {
     });
 });
 
-// Gérer les téléchargements
+// Gérer les téléchargements de thèmes complets
 function addDownloadEvents() {
     const downloadButtons = document.querySelectorAll('.download-btn');
     
     downloadButtons.forEach(button => {
-        button.addEventListener('click', async (e) => {
+        button.addEventListener('click', (e) => {
             const themeId = e.target.dataset.id;
             const theme = themes.find(t => t.id == themeId);
-            const downloadUrl = getGitHubUrl(theme.filename);
             
-            try {
-                const response = await fetch(downloadUrl);
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `theme-${theme.title.toLowerCase().replace(/ /g, '-')}.jpg`;
-                document.body.appendChild(a);
-                a.click();
-                
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } catch (error) {
-                console.error('Erreur de téléchargement:', error);
-                alert('Le téléchargement a échoué. Veuillez réessayer plus tard.');
-            }
+            // Créer un lien invisible pour le téléchargement
+            const a = document.createElement('a');
+            a.href = theme.downloadUrl;
+            a.download = `theme-${theme.title.toLowerCase().replace(/ /g, '-')}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            console.log(`Téléchargement de "${theme.title}" initié`);
         });
     });
 }
@@ -192,21 +157,25 @@ function addImageDownloadEvents() {
     
     downloadImageButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // Empêche l'ouverture du modal
             const imageUrl = e.target.dataset.url;
             
+            // Créer un lien invisible pour le téléchargement
             const a = document.createElement('a');
             a.href = imageUrl;
             a.download = `image-${Date.now()}.jpg`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+            
+            console.log(`Téléchargement de l'image initié`);
         });
     });
 }
 
-// Configurer le modal
+// Configurer le modal pour l'image agrandie
 function setupModal() {
+    // Lorsqu'on clique sur une image
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('theme-img')) {
             modal.style.display = "block";
@@ -215,6 +184,7 @@ function setupModal() {
         }
     });
 
+    // Bouton de téléchargement dans le modal
     downloadExpandedBtn.addEventListener('click', function() {
         const a = document.createElement('a');
         a.href = currentExpandedImageUrl;
@@ -224,10 +194,12 @@ function setupModal() {
         document.body.removeChild(a);
     });
 
+    // Fermer le modal
     closeBtn.addEventListener('click', function() {
         modal.style.display = "none";
     });
 
+    // Fermer quand on clique en dehors de l'image
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
