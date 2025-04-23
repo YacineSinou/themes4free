@@ -55,14 +55,6 @@ const themes = [
         imageDownloadUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
-        id: 7,
-        title: "Métropole",
-        description: "",
-        category: "ville",
-        imageUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
-        imageDownloadUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-    },
     {
         id: 8,
         title: "Cosmos Infini",
