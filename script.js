@@ -3,7 +3,7 @@ const themes = [
     {
         id: 1,
         title: "Forêt Enchantée",
-        description: "forêts mystérieuses et magiques.",
+        description: "",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -12,7 +12,7 @@ const themes = [
     {
         id: 2,
         title: "Futur Numérique",
-        description: "high-tech et éléments futuristes.",
+        description: "",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -21,7 +21,7 @@ const themes = [
     {
         id: 3,
         title: "Ondes Colorées",
-        description: "formes et couleurs vibrantes.",
+        description: "",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -30,7 +30,7 @@ const themes = [
     {
         id: 4,
         title: "Nuit Urbaine",
-        description: "Captez l'essence des villes la nuit.",
+        description: "",
         category: "ville",
         imageUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -39,7 +39,7 @@ const themes = [
     {
         id: 5,
         title: "Plage Paradisiaque",
-        description: "Thème relaxant inspiré par les plus belles plages du monde.",
+        description: "",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -48,7 +48,7 @@ const themes = [
     {
         id: 6,
         title: "Code Source",
-        description: "Pour les développeurs, un thème inspiré par le code.",
+        description: "",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
@@ -57,7 +57,7 @@ const themes = [
     {
         id: 8,
         title: "Cosmos Infini",
-        description: "Un thème abstrait inspiré par l'espace et les étoiles.",
+        description: "",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
