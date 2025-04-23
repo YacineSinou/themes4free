@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Téléchargement de Thèmes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Thèmes à Télécharger</h1>
+        <p>Découvrez notre collection de thèmes gratuits</p>
+    </header>
+
+    <div class="container">
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">Tous</button>
+            <button class="filter-btn" data-category="nature">Nature</button>
+            <button class="filter-btn" data-category="technologie">Technologie</button>
+            <button class="filter-btn" data-category="abstrait">Abstrait</button>
+            <button class="filter-btn" data-category="ville">Ville</button>
+        </div>
+
+        <div class="themes-container">
+            <!-- Les thèmes seront ajoutés dynamiquement par JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal pour l'image agrandie -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="expandedImg">
+        <button id="downloadExpandedImage" class="download-btn">Télécharger cette image</button>
+    </div>
+
+    <footer>
+        <p>© 2023 Téléchargement de Thèmes. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
