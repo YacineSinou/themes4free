@@ -6,7 +6,7 @@ const themes = [
         description: "",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "https://raw.githubusercontent.com/YacineSinou/themes4free/main/images/photo-1.jpg",
+        downloadUrl: "#",
         imageDownloadUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
