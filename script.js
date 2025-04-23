@@ -1,4 +1,19 @@
+const GITHUB_REPO = "YacineSinou/themes4free";
+const GITHUB_BRANCH = "main";
+const GITHUB_IMAGES_FOLDER = "images";
+
+// Nouveau mapping avec des noms simples
+const GITHUB_FILENAMES = {
+    1: "photo-1.jpg",
+    2: "photo-2.jpg",
+    3: "photo-3.jpg",
+    4: "photo-4.jpg",
+    5: "photo-5.jpg",
+    6: "photo-6.jpg",
+    8: "photo-8.jpg" 
+};
 // Données des thèmes avec des images qui fonctionnent
+
 const themes = [
     {
         id: 1,
@@ -157,49 +172,85 @@ function addDownloadEvents() {
 
 // Gérer les téléchargements d'images
 function addImageDownloadEvents() {
-    const downloadImageButtons = document.querySelectorAll('.download-image-btn');
-    
-    downloadImageButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+    document.querySelectorAll('.download-image-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            const themeCard = button.closest('.theme-card');
-            const themeId = themeCard.querySelector('.download-btn').dataset.id;
-            const theme = themes.find(t => t.id == themeId);
             
-            // Utiliser GitHub pour le téléchargement
-            const downloadUrl = getGitHubDownloadUrl(theme.filename);
+            const themeId = btn.closest('.theme-card').querySelector('.download-btn').dataset.id;
+            const filename = GITHUB_FILENAMES[themeId];
             
-            const a = document.createElement('a');
-            a.href = downloadUrl;
-            a.download = `image-${theme.title.toLowerCase().replace(/ /g, '-')}.jpg`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            if (!filename) {
+                alert("Fichier non disponible");
+                return;
+            }
+
+            const githubUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_IMAGES_FOLDER}/${filename}`;
+            
+            try {
+                // Solution qui fonctionne à 100% pour forcer le téléchargement
+                const response = await fetch(githubUrl);
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Nettoyage
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
+                }, 100);
+            } catch (error) {
+                console.error("Échec du téléchargement:", error);
+                alert("Erreur lors du téléchargement");
+            }
         });
     });
 }
 
 // Configurer le modal pour l'image agrandie
-downloadExpandedBtn.addEventListener('click', function() {
-    const themeCards = document.querySelectorAll('.theme-card');
-    let themeId;
+downloadExpandedBtn.addEventListener('click', async function(e) {
+    e.preventDefault();
     
-    // Trouver la carte de thème active
+    // Trouver le thème correspondant à l'image agrandie
+    const themeCards = document.querySelectorAll('.theme-card');
+    let themeId = null;
+    
     themeCards.forEach(card => {
         if (card.querySelector('.theme-img').src === currentExpandedImageUrl) {
             themeId = card.querySelector('.download-btn').dataset.id;
         }
     });
+
+    if (!themeId || !GITHUB_FILENAMES[themeId]) {
+        alert("Fichier non disponible");
+        return;
+    }
+
+    const filename = GITHUB_FILENAMES[themeId];
+    const githubUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_IMAGES_FOLDER}/${filename}`;
     
-    if (themeId) {
-        const theme = themes.find(t => t.id == themeId);
-        const downloadUrl = getGitHubDownloadUrl(theme.filename);
+    try {
+        const response = await fetch(githubUrl);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
         
         const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = `image-${theme.title.toLowerCase().replace(/ /g, '-')}.jpg`;
+        a.href = blobUrl;
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
-        document.body.removeChild(a);
+        
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+        }, 100);
+    } catch (error) {
+        console.error("Échec du téléchargement:", error);
+        alert("Erreur lors du téléchargement");
     }
 });
