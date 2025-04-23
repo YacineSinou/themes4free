@@ -3,7 +3,7 @@ const themes = [
     {
         id: 1,
         title: "Forêt Enchantée",
-        description: "Un thème inspiré par les forêts mystérieuses et magiques.",
+        description: "forêts mystérieuses et magiques.",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         downloadUrl: "#",
