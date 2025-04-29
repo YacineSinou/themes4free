@@ -3,64 +3,64 @@ const themes = [
     {
         id: 1,
         title: "Forêt Enchantée",
-        description: "",
+        description: "forêts mystérieuses et magiques.",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/uc?export=download&id=1jHw7Cj2iOTXyW-TRY4BHPegt6Fzbi9g6",
         imageDownloadUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 2,
         title: "Futur Numérique",
-        description: "",
+        description: "high-tech et éléments futuristes.",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/uc?export=download&id=1QsJv8HGvP5gjjORCxtnbnVE62ZxFEsgl",
         imageDownloadUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 3,
         title: "Ondes Colorées",
-        description: "",
+        description: "formes et couleurs vibrantes.",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/file/d/1YhIQaiTz6CaTSp0JKy3cVoqAwa86K11X/view?usp=drive_link",
         imageDownloadUrl: "https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 4,
         title: "Nuit Urbaine",
-        description: "",
+        description: "Captez l'essence des villes la nuit.",
         category: "ville",
         imageUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/uc?export=download&id=1-B4fnYE86MHxZq8WEizikfIgmN8nNQOF",
         imageDownloadUrl: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 5,
         title: "Plage Paradisiaque",
-        description: "",
+        description: "Thème relaxant inspiré par les plus belles plages du monde.",
         category: "nature",
         imageUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/file/d/1z4XXZjinB7rrCQ29NFRXhqO1X-TSyXrW/view?usp=drive_link",
         imageDownloadUrl: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 6,
         title: "Code Source",
-        description: "",
+        description: "Pour les développeurs, un thème inspiré par le code.",
         category: "technologie",
         imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/file/d/1HdImcuuWx8e7DowLZpGhfRy79YxAoY6O/view?usp=drive_link",
         imageDownloadUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 8,
         title: "Cosmos Infini",
-        description: "",
+        description: "Un thème abstrait inspiré par l'espace et les étoiles.",
         category: "abstrait",
         imageUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-        downloadUrl: "#",
+        downloadUrl: "https://drive.google.com/file/d/1YOE46_qOSKzKnb7u-Vc2eioXTVaf1-Jh/view?usp=drive_link",
         imageDownloadUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     }
 ];
